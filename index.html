@@ -424,6 +424,27 @@
     transition:border-color .2s;
   }
   .proj-link:hover{border-color:var(--cyan);}
+  .cta-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top:6px;
+    padding:13px 26px;
+    background:var(--cyan);
+    color:var(--void);
+    font-style:normal;
+    font-weight:700;
+    font-size:1rem;
+    letter-spacing:0.01em;
+    border:1px solid var(--cyan);
+    transition:background .25s,color .25s,transform .25s,box-shadow .25s;
+  }
+  .cta-btn:hover{
+    background:transparent;
+    color:var(--cyan);
+    transform:translateY(-2px);
+    box-shadow:0 0 20px rgba(111,195,255,0.35);
+  }
   @media(max-width:760px){ .project-grid{grid-template-columns:1fr;} }
 
   /* ---------- social impact (big number cards) ---------- */
@@ -627,14 +648,14 @@
         <ul class="beyond-list">
           <li>Raised ~₹150,000 in sponsorship prizes for winners and participants</li>
         </ul>
-        <a class="proj-link" href="https://www.hyperbloomhacks.com/" target="_blank" rel="noopener">Learn more ↗</a>
+        <a class="cta-btn" href="https://www.hyperbloomhacks.com/" target="_blank" rel="noopener">Learn more ↗</a>
       </div>
       <div class="impact-card reveal">
         <div class="bignum">200+</div>
         <span class="label">Students Impacted</span>
         <div class="placeholder-line w90" style="margin-bottom:8px;"></div>
         <div class="placeholder-line w60" style="margin-bottom:18px;"></div>
-        <a class="proj-link" href="impact-flipbook.html">Read book ↗</a>
+        <a class="cta-btn" href="impact-flipbook.html">Read book ↗</a>
       </div>
     </div>
   </section>

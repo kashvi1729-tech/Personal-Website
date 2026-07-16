@@ -119,6 +119,61 @@
   }
   header.top nav a:hover::after{width:100%;}
 
+  /* ---------- mobile nav toggle ---------- */
+  .nav-toggle{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    width:30px;height:30px;
+    background:none;border:none;cursor:pointer;
+    z-index:31;
+    padding:0;
+  }
+  .nav-toggle span{
+    display:block;width:100%;height:2px;background:var(--paper);
+    transition:transform .3s ease,opacity .3s ease;
+  }
+  .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle.open span:nth-child(2){opacity:0;}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  .nav-backdrop{
+    position:fixed;inset:0;
+    background:rgba(0,0,0,0.55);
+    opacity:0;pointer-events:none;
+    transition:opacity .3s ease;
+    z-index:25;
+  }
+  .nav-backdrop.open{opacity:1;pointer-events:auto;}
+
+  @media(max-width:760px){
+    .nav-toggle{display:flex;}
+    header.top nav{
+      position:fixed;
+      top:0;right:0;
+      width:76vw;
+      max-width:320px;
+      height:100vh;
+      background:var(--void-soft);
+      border-left:1px solid var(--hairline);
+      flex-direction:column;
+      align-items:flex-start;
+      gap:0;
+      padding:110px 32px 40px;
+      transform:translateX(100%);
+      transition:transform .35s cubic-bezier(.16,.84,.44,1);
+      z-index:30;
+    }
+    header.top nav.open{transform:translateX(0);}
+    header.top nav a{
+      width:100%;
+      padding:16px 0;
+      border-bottom:1px solid var(--hairline);
+      font-size:0.95rem;
+    }
+  }
+
   /* ---------- hero ---------- */
   .hero{
     min-height:100vh;
@@ -161,9 +216,9 @@
     position:relative;z-index:1;
     width:100%;height:100%;
     object-fit:cover;
-    object-position:50% 22%;
-    transform:scale(1.28);
-    transform-origin:50% 22%;
+    object-position:50% 12%;
+    transform:scale(1.2);
+    transform-origin:50% 12%;
   }
   @media(max-width:760px){
     .hero-content{flex-direction:column-reverse;text-align:center;gap:40px;}
@@ -557,15 +612,19 @@
 <div class="cursor-dot" id="cursorDot"></div>
 
 <header class="top">
-  <div class="mark">[ NAME ]</div>
-  <nav>
+  <div class="mark">Kashvi</div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="mainNav">
     <a href="#research">Research</a>
     <a href="#impact">Impact</a>
     <a href="#awards">Awards</a>
-    <a href="#beyond">Beyond</a>
+    <a href="#beyond">Beyond Academics</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
+<div class="nav-backdrop" id="navBackdrop"></div>
 
 <div class="page">
 
@@ -575,10 +634,10 @@
       <div class="hero-text">
         <h1><span class="grad" id="heroName"></span></h1>
         <div class="chips">
-          <span class="chip">Research</span>
-          <span class="chip">Build</span>
-          <span class="chip">Music</span>
-          <span class="chip">Sport</span>
+          <span class="chip">EXPLORER</span>
+          <span class="chip">BUILDER</span>
+          <span class="chip">ATHLETE</span>
+          <span class="chip">MUSICIAN</span>
         </div>
       </div>
       <div class="hero-portrait"><img class="portrait-img" src="headshot.jpg" alt="Kashvi Ruparelia"></div>
@@ -734,6 +793,31 @@
 </div>
 
 <script>
+  // ---------- mobile nav toggle ----------
+  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainNav');
+  const navBackdrop = document.getElementById('navBackdrop');
+  function closeMobileNav(){
+    mainNav.classList.remove('open');
+    navToggle.classList.remove('open');
+    navBackdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function openMobileNav(){
+    mainNav.classList.add('open');
+    navToggle.classList.add('open');
+    navBackdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  if(navToggle){
+    navToggle.addEventListener('click', ()=>{
+      mainNav.classList.contains('open') ? closeMobileNav() : openMobileNav();
+    });
+    navBackdrop.addEventListener('click', closeMobileNav);
+    mainNav.querySelectorAll('a').forEach(a=>a.addEventListener('click', closeMobileNav));
+    window.addEventListener('resize', ()=>{ if(window.innerWidth > 760) closeMobileNav(); });
+  }
+
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ---------- custom cursor ----------

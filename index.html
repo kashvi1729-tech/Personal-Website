@@ -19,6 +19,7 @@
     --magenta:#2e6fe0;
     --amber:#bfe3ff;
     --selection-bg:#ece2c9;
+    --desc-color:#cdd1d8;
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -256,21 +257,32 @@
   }
   .chip:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 16px rgba(111,195,255,0.28);}
 
-  .scroll-cue{
-    position:absolute;bottom:40px;left:64px;
-    font-family:'Instrument Serif',serif;font-style:italic;
-    font-size:0.65rem;color:var(--mute);
-    letter-spacing:0.1em;text-transform:uppercase;
-    display:flex;align-items:center;gap:10px;
-  }
-  .scroll-cue .line{width:1px;height:34px;background:linear-gradient(var(--cyan),transparent);animation:pulse 2s ease-in-out infinite;}
-  @keyframes pulse{0%,100%{opacity:.3;}50%{opacity:1;}}
-
   /* ---------- section shell ---------- */
   section{padding:130px 0;position:relative;}
-  .section-head{display:flex;align-items:baseline;gap:20px;margin-bottom:60px;}
-  .section-head .num{font-family:'Instrument Serif',serif;font-style:italic;font-size:0.75rem;color:var(--magenta);}
-  .section-head h2{font-size:clamp(1.9rem,3.4vw,2.8rem);}
+  .section-head{
+    position:relative;
+    margin-bottom:60px;
+    padding-top:clamp(20px,4vw,44px);
+  }
+  .section-head .num{
+    position:absolute;
+    left:-4px;
+    top:-0.15em;
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    font-size:clamp(4.5rem,11vw,8.5rem);
+    line-height:1;
+    color:rgba(111,195,255,0.14);
+    z-index:0;
+    pointer-events:none;
+    user-select:none;
+    white-space:nowrap;
+  }
+  .section-head h2{
+    position:relative;
+    z-index:1;
+    font-size:clamp(1.9rem,3.4vw,2.8rem);
+  }
 
   .divider{
     width:100%;height:40px;
@@ -410,8 +422,9 @@
   .project-card h3{font-size:1.25rem;font-weight:500;margin-bottom:14px;}
   .proj-desc,
   .proj-features{
+    font-family:Georgia,'Times New Roman',serif;
     font-style:normal;
-    color:var(--mute);
+    color:var(--desc-color);
     font-size:0.94rem;
     line-height:1.65;
     margin-bottom:14px;
@@ -432,12 +445,13 @@
     gap:10px;
   }
   .proj-checklist li{
+    font-family:Georgia,'Times New Roman',serif;
     font-style:normal;
     display:flex;
     gap:10px;
     align-items:flex-start;
     font-size:0.92rem;
-    color:var(--paper);
+    color:var(--desc-color);
   }
   .proj-checklist li::before{
     content:"✓";
@@ -456,12 +470,13 @@
     gap:10px;
   }
   .beyond-list li{
+    font-family:Georgia,'Times New Roman',serif;
     font-style:normal;
     display:flex;
     gap:10px;
     align-items:flex-start;
     font-size:0.92rem;
-    color:var(--paper);
+    color:var(--desc-color);
   }
   .beyond-list li::before{
     content:"•";
@@ -503,21 +518,32 @@
   @media(max-width:760px){ .project-grid{grid-template-columns:1fr;} }
 
   /* ---------- social impact (big number cards) ---------- */
-  .impact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hairline);border:1px solid var(--hairline);}
-  .impact-card{display:block;color:inherit;text-decoration:none;background:var(--void-soft);padding:48px 40px;position:relative;isolation:isolate;transition:background .3s,border-color .3s;}
+  .impact-list{display:flex;flex-direction:column;gap:1px;background:var(--hairline);border:1px solid var(--hairline);}
+  .impact-card{
+    display:grid;
+    grid-template-columns:260px 1fr;
+    gap:56px;
+    align-items:start;
+    color:inherit;text-decoration:none;background:var(--void-soft);padding:44px 40px;position:relative;isolation:isolate;transition:background .3s,border-color .3s;
+  }
+  .impact-card .cta-btn{align-self:flex-start;}
   .impact-card:hover{background:var(--void-card);}
+  .impact-card .stat-col{position:sticky;top:120px;}
   .impact-card .bignum{
     font-family:'Instrument Serif',serif;font-style:italic;
     font-weight:700;
-    font-size:clamp(3.4rem,7vw,5.6rem);
+    font-size:clamp(3rem,6vw,4.6rem);
     line-height:0.95;
     background:linear-gradient(90deg,var(--cyan),var(--amber));
     -webkit-background-clip:text;background-clip:text;color:transparent;
-    margin-bottom:18px;
+    margin-bottom:14px;
   }
-  .impact-card .label{font-family:'Instrument Serif',serif;font-style:italic;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--mute);margin-bottom:20px;display:block;}
-  .impact-card .label.tagline{text-transform:none;font-size:0.9rem;letter-spacing:0.01em;line-height:1.4;}
-  @media(max-width:760px){ .impact-grid{grid-template-columns:1fr;} }
+  .impact-card .label{font-family:'Instrument Serif',serif;font-style:italic;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--mute);display:block;}
+  .impact-card .label.tagline{text-transform:none;font-size:0.85rem;letter-spacing:0.01em;line-height:1.4;}
+  @media(max-width:760px){
+    .impact-card{grid-template-columns:1fr;gap:20px;}
+    .impact-card .stat-col{position:static;}
+  }
 
   /* ---------- awards (3 across, no image) ---------- */
   .awards-row{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;}
@@ -527,12 +553,13 @@
     font-family:'Instrument Serif',serif;font-style:italic;font-weight:700;font-size:1.4rem;
     color:var(--magenta);margin-bottom:20px;
   }
-  .award-card h3{font-size:1.1rem;font-weight:500;margin-bottom:8px;}
+  .award-card h3{font-family:Georgia,'Times New Roman',serif;font-style:normal;font-size:1.1rem;font-weight:700;margin-bottom:8px;}
   .award-card .issuer{font-family:'Instrument Serif',serif;font-style:italic;font-size:0.88rem;color:rgba(241,240,235,0.72);letter-spacing:0.02em;}
   .award-card .award-desc{
+    font-family:Georgia,'Times New Roman',serif;
     font-style:normal;
     font-size:0.85rem;
-    color:var(--mute);
+    color:var(--desc-color);
     line-height:1.5;
     margin-top:10px;
   }
@@ -599,7 +626,7 @@
 
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
-    .scroll-cue .line, header.top .mark::after{animation:none;}
+    header.top .mark::after{animation:none;}
     .reveal{opacity:1;transform:none;filter:none;transition:none;}
     .cursor-dot,.cursor-ring{display:none;}
   }
@@ -642,7 +669,6 @@
       </div>
       <div class="hero-portrait"><img class="portrait-img" src="headshot.jpg" alt="Kashvi Ruparelia"></div>
     </div>
-    <div class="scroll-cue"><div class="line"></div>Scroll</div>
   </section>
 
   <!-- RESEARCH PROJECTS -->
@@ -698,23 +724,29 @@
   <!-- SOCIAL IMPACT -->
   <section id="impact">
     <div class="section-head reveal"><span class="num">02</span><h2>Social Impact</h2></div>
-    <div class="impact-grid">
+    <div class="impact-list">
       <div class="impact-card reveal">
-        <div class="bignum">1000+</div>
-        <span class="label tagline">(and growing) community of young developers reached</span>
-        <p class="proj-desc">Through <strong>Hyperbloom Hacks</strong> — a nonprofit I <strong>founded</strong> to make computer science opportunities more accessible to students.</p>
-        <p class="proj-desc">It was built with the aim to ensure that curious students have access to the resources, mentorship, and opportunities they need to pursue computer science.</p>
-        <ul class="beyond-list">
-          <li>Raised ~₹150,000 in sponsorship prizes for winners and participants</li>
-        </ul>
-        <a class="cta-btn" href="https://www.hyperbloomhacks.com/" target="_blank" rel="noopener">Learn more ↗</a>
+        <div class="stat-col">
+          <div class="bignum">1000+</div>
+          <span class="label tagline">(and growing) community of young developers reached</span>
+        </div>
+        <div class="content-col">
+          <p class="proj-desc">Through <strong>Hyperbloom Hacks</strong> — a nonprofit I <strong>founded</strong> to make computer science opportunities more accessible to students.</p>
+          <p class="proj-desc">It was built with the aim to ensure that curious students have access to the resources, mentorship, and opportunities they need to pursue computer science.</p>
+          <ul class="beyond-list">
+            <li>Raised ~₹150,000 in sponsorship prizes for winners and participants</li>
+          </ul>
+          <a class="cta-btn" href="https://www.hyperbloomhacks.com/" target="_blank" rel="noopener">Learn more ↗</a>
+        </div>
       </div>
       <div class="impact-card reveal">
-        <div class="bignum">200+</div>
-        <span class="label">Students Impacted</span>
-        <div class="placeholder-line w90" style="margin-bottom:8px;"></div>
-        <div class="placeholder-line w60" style="margin-bottom:18px;"></div>
-        <a class="cta-btn" href="impact-flipbook.html">Read book ↗</a>
+        <div class="stat-col">
+          <div class="bignum">200+</div>
+          <span class="label">Students Impacted</span>
+        </div>
+        <div class="content-col">
+          <a class="cta-btn" href="impact-flipbook.html">Read book ↗</a>
+        </div>
       </div>
     </div>
   </section>

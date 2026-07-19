@@ -20,6 +20,7 @@
     --amber:#bfe3ff;
     --selection-bg:#ece2c9;
     --desc-color:#cdd1d8;
+    --gold:#98eaf5;
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -519,13 +520,16 @@
     justify-content:center;
     align-items:center;
     gap:6px;
-    color:var(--cyan);
+    color:var(--gold);
     font-size:1.4rem;
+    font-weight:600;
     text-align:center;
     border-bottom:1px solid transparent;
     transition:border-color .2s;
   }
-  .proj-link:hover{border-color:var(--cyan);}
+  .proj-link .arrow{display:inline-block;transition:transform .25s ease;}
+  .proj-link:hover .arrow{transform:translate(4px,-4px);}
+  .proj-link:hover{border-color:var(--gold);}
   .cta-btn{
     display:inline-flex;
     align-items:center;
@@ -718,7 +722,7 @@
             <li>Published in <strong>American Journal of Computer Science and Technology</strong></li>
             <li>Patent granted by <strong>Intellectual Property India</strong></li>
           </ul>
-          <a class="proj-link" href="https://www.sciencepg.com/article/10.11648/j.ajcst.20250804.13" target="_blank" rel="noopener">Learn more ↗</a>
+          <a class="proj-link" href="https://www.sciencepg.com/article/10.11648/j.ajcst.20250804.13" target="_blank" rel="noopener">Learn more <span class="arrow">↗</span></a>
         </div>
       </div>
       <div class="project-card reveal">
@@ -730,7 +734,7 @@
           <ul class="proj-checklist">
             <li>Published in <strong>Journal of Engineering Research</strong> (Q1, Elsevier)</li>
           </ul>
-          <a class="proj-link" href="https://www.sciencedirect.com/science/article/pii/S2307187726002634" target="_blank" rel="noopener">Learn more ↗</a>
+          <a class="proj-link" href="https://www.sciencedirect.com/science/article/pii/S2307187726002634" target="_blank" rel="noopener">Learn more <span class="arrow">↗</span></a>
         </div>
       </div>
       <div class="project-card reveal">

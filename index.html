@@ -257,6 +257,26 @@
   }
   .chip:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 16px rgba(111,195,255,0.28);}
 
+  .resume-btn{
+    display:inline-block;
+    margin-top:26px;
+    font-family:'Instrument Serif',serif;font-style:italic;
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--void);
+    background:var(--cyan);
+    border:1px solid var(--cyan);
+    padding:11px 24px;
+    transition:all .25s;
+  }
+  .resume-btn:hover{
+    background:transparent;
+    color:var(--cyan);
+    box-shadow:0 0 16px rgba(111,195,255,0.28);
+  }
+  @media(max-width:760px){ .resume-btn{margin-top:22px;} }
+
   /* ---------- section shell ---------- */
   section{padding:130px 0;position:relative;}
   .section-head{
@@ -495,11 +515,13 @@
   }
   .beyond-list li strong{color:var(--cyan);font-weight:inherit;}
   .proj-link{
-    display:inline-flex;
+    display:flex;
+    justify-content:center;
     align-items:center;
     gap:6px;
     color:var(--cyan);
-    font-size:0.95rem;
+    font-size:1.4rem;
+    text-align:center;
     border-bottom:1px solid transparent;
     transition:border-color .2s;
   }
@@ -676,6 +698,7 @@
           <span class="chip">ATHLETE</span>
           <span class="chip">MUSICIAN</span>
         </div>
+        <a class="resume-btn" href="resume.pdf" target="_blank" rel="noopener">View Resume ↗</a>
       </div>
       <div class="hero-portrait"><img class="portrait-img" src="headshot.jpg" alt="Kashvi Ruparelia"></div>
     </div>

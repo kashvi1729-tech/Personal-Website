@@ -360,23 +360,45 @@
   }
   .chip:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 16px rgba(var(--accent-rgb),0.28);}
 
+  .hero-buttons{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:26px;
+  }
   .resume-btn{
     display:inline-block;
-    margin-top:26px;
     font-family:'Instrument Serif',serif;font-style:italic;
-    font-size:0.78rem;
+    font-size:1.56rem;
     letter-spacing:0.08em;
     text-transform:uppercase;
     color:var(--void);
     background:var(--cyan);
     border:1px solid var(--cyan);
-    padding:11px 24px;
+    padding:22px 48px;
     transition:all .25s;
   }
   .resume-btn:hover{
     background:transparent;
     color:var(--cyan);
     box-shadow:0 0 16px rgba(var(--accent-rgb),0.28);
+  }
+  .readbook-btn{
+    display:inline-block;
+    font-family:'Instrument Serif',serif;font-style:italic;
+    font-size:1.56rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--void);
+    background:#258ef7;
+    border:1px solid #258ef7;
+    padding:22px 48px;
+    transition:all .25s;
+  }
+  .readbook-btn:hover{
+    background:transparent;
+    color:#258ef7;
+    box-shadow:0 0 16px rgba(37,142,247,0.35);
   }
   @media(max-width:760px){ .resume-btn{margin-top:22px;} }
 
@@ -813,7 +835,10 @@
           <span class="chip">ATHLETE</span>
           <span class="chip">MUSICIAN</span>
         </div>
-        <a class="resume-btn" href="resume.pdf" target="_blank" rel="noopener">View Resume ↗</a>
+        <div class="hero-buttons">
+  <a class="resume-btn" href="resume.pdf" target="_blank" rel="noopener">View Resume ↗</a>
+  <a class="readbook-btn" href="impact-flipbook.html">Read Book →</a>
+</div>
       </div>
       <div class="hero-portrait"><img class="portrait-img" src="headshot.jpg" alt="Kashvi Ruparelia"></div>
     </div>

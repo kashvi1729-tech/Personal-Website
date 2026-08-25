@@ -51,8 +51,14 @@
   main .cap{
     color:var(--mute);
     font-size:0.95rem;
+    margin-bottom:8px;
+  }
+  .visits{
+    color:var(--mute);
+    font-size:0.9rem;
     margin-bottom:20px;
   }
+  #visit-count{color:var(--cyan);}
   .fp-wrap{
     border:1px solid var(--hairline);
     background:var(--void-soft);
@@ -70,18 +76,38 @@
 </style>
 </head>
 <body>
-
 <header>
   <a href="index.html">&larr; Back to portfolio</a>
   <span class="title">Flipbook</span>
 </header>
-
 <main>
   <p class="cap">Part of Kashvi's Social Impact work — reaching 200+ students.</p>
+  <p class="visits">Visitors: <span id="visit-count">—</span></p>
   <div class="fp-wrap">
     <iframe allowfullscreen="" allow="autoplay; fullscreen; clipboard-write" scrolling="no" class="fp-iframe" style="border: 0px; width: 100%; height: 600px;" src="https://heyzine.com/flip-book/0c7f38fe7c.html" spellcheck="false"></iframe>
   </div>
 </main>
 
+<script>
+  (function () {
+    var el = document.getElementById('visit-count');
+    var namespace = 'kashvi-ruparelia-portfolio';
+    var key = 'impact-flipbook';
+    var alreadyCounted = sessionStorage.getItem('counted-' + key);
+    var endpoint = alreadyCounted
+      ? 'https://abacus.jasoncameron.dev/get/' + namespace + '/' + key
+      : 'https://abacus.jasoncameron.dev/hit/' + namespace + '/' + key;
+
+    fetch(endpoint)
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        el.textContent = data.value.toLocaleString();
+        sessionStorage.setItem('counted-' + key, '1');
+      })
+      .catch(function () {
+        el.textContent = 'N/A';
+      });
+  })();
+</script>
 </body>
 </html>

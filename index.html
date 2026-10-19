@@ -888,6 +888,7 @@
         <div class="thumb"><img class="thumb-img" src="mri-scan.png" alt="MRI scan with tumor segmentation overlay"></div>
         <div class="body">
           <h3>Image Segmentation for identifying Brain Tumors in patients' MRI scans</h3>
+          <p class="proj-desc"> Developed an anatomically guided 2D U-Net with prior-informed attention for brain tumor segmentation (glioma, meningioma, pituitary) using the BRISC MRI dataset in PyTorch, achieving a Dice score of 0.709 and HD95 of 36.5 px. Engineered a complete training and evaluation pipeline incorporating class-imbalance-aware loss functions, 3-fold cross-validation, geometric data augmentation, and multiple segmentation metrics. Benchmarked the model against baseline U-Net, attention-gate ablation, Swin-UNet, and UNETR architectures, using paired Wilcoxon tests to assess significance. Conducted false-positive analysis to evaluate anatomically implausible detections and compared model performance under identical training conditions, finding that a compact 1.9M-parameter U-Net outperformed the 27M-parameter Swin-UNet on this limited-data dataset.</p>
         </div>
       </div>
     </div>

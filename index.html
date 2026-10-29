@@ -22,6 +22,17 @@
 <meta property="og:image" content="https://kashviruparelia.com/preview.png">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="icon" href="/favicon.png">
+
+<script>
+  // apply saved/default theme before first paint (default = light)
+  try{
+    if((localStorage.getItem('theme') || 'light') === 'light'){
+      document.documentElement.setAttribute('data-theme','light');
+    }
+  }catch(e){
+    document.documentElement.setAttribute('data-theme','light');
+  }
+</script>
   
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1009,7 +1020,7 @@
     if(theme === 'light'){ root.setAttribute('data-theme','light'); }
     else{ root.removeAttribute('data-theme'); }
   }
-  const savedTheme = localStorage.getItem('theme') || 'dark';
+  const savedTheme = localStorage.getItem('theme') || 'light';
   setThemeAttr(savedTheme); // set before grid canvas initializes below, so first paint is correct
 
   // ---------- hat-tip -> circular wipe animation layer (wraps the existing toggle logic above) ----------

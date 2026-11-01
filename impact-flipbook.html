@@ -71,28 +71,32 @@
   .stats{
     display:flex;
     justify-content:center;
-    align-items:stretch;
+    align-items:baseline;
+    flex-wrap:wrap;
     margin-bottom:32px;
+    padding:18px 0;
+    border-top:1px solid var(--hairline);
+    border-bottom:1px solid var(--hairline);
   }
   .stat{
-    padding:0 56px;
-    text-align:center;
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    padding:0 36px;
   }
   .stat + .stat{
     border-left:1px solid var(--hairline);
   }
-  .stat .num{
-    display:block;
-    color:var(--cyan);
-    font-size:3rem;
-    font-style:normal;
-    line-height:1.1;
-  }
   .stat .label{
-    display:block;
-    color:var(--mute);
-    font-size:1rem;
-    margin-top:6px;
+    color:var(--paper);
+    font-size:1.5rem;
+  }
+  .stat .num{
+    color:var(--cyan);
+    font-size:2.2rem;
+    font-style:normal;
+    font-weight:bold;
+    line-height:1;
   }
   .fp-iframe{
     border:0;
@@ -113,9 +117,11 @@
       padding:12px 32px;
     }
     main{padding-left:22px;padding-right:22px;}
-    .stat{padding:0 18px;}
-    .stat .num{font-size:2.2rem;}
-    .stat .label{font-size:0.9rem;}
+    .stats{flex-direction:column;align-items:center;gap:10px;}
+    .stat{padding:0;}
+    .stat + .stat{border-left:0;}
+    .stat .label{font-size:1.25rem;}
+    .stat .num{font-size:1.8rem;}
   }
 </style>
 </head>
@@ -129,12 +135,12 @@
 
   <div class="stats">
     <div class="stat">
+      <span class="label">Total eBook reads:</span>
       <span class="num" id="visit-count">—</span>
-      <span class="label">Total eBook reads</span>
     </div>
     <div class="stat">
+      <span class="label">Physical copies sold/shared:</span>
       <span class="num">~500</span>
-      <span class="label">Physical copies sold/shared</span>
     </div>
   </div>
 

@@ -68,23 +68,31 @@
     margin:0 auto;
     width:100%;
   }
-  main .cap{
-    color:var(--mute);
-    font-size:0.95rem;
-    margin-bottom:8px;
+  .stats{
+    display:flex;
+    justify-content:center;
+    align-items:stretch;
+    margin-bottom:32px;
   }
-  .visits{
-    color:var(--mute);
-    font-size:2rem;
-    margin-bottom:20px;
-    font-weight:normal;
+  .stat{
+    padding:0 56px;
     text-align:center;
   }
-  #visit-count{
+  .stat + .stat{
+    border-left:1px solid var(--hairline);
+  }
+  .stat .num{
+    display:block;
     color:var(--cyan);
-    font-size:2.2rem;
-    font-weight:bold;
+    font-size:3rem;
     font-style:normal;
+    line-height:1.1;
+  }
+  .stat .label{
+    display:block;
+    color:var(--mute);
+    font-size:1rem;
+    margin-top:6px;
   }
   .fp-iframe{
     border:0;
@@ -105,6 +113,9 @@
       padding:12px 32px;
     }
     main{padding-left:22px;padding-right:22px;}
+    .stat{padding:0 18px;}
+    .stat .num{font-size:2.2rem;}
+    .stat .label{font-size:0.9rem;}
   }
 </style>
 </head>
@@ -115,8 +126,18 @@
   <span class="title">Flipbook</span>
 </header>
 <main>
-  
-  <h1 class="visits">Total Book Reads: <span id="visit-count">—</span></h1>
+
+  <div class="stats">
+    <div class="stat">
+      <span class="num" id="visit-count">—</span>
+      <span class="label">Total eBook reads</span>
+    </div>
+    <div class="stat">
+      <span class="num">~500</span>
+      <span class="label">Physical copies sold/shared</span>
+    </div>
+  </div>
+
   <div class="fp-wrap">
     <iframe allowfullscreen="allowfullscreen" allow="autoplay; fullscreen; clipboard-write" scrolling="no" class="fp-iframe" src="https://heyzine.com/flip-book/ae6923ff2a.html" style="border: 0px; width: 100%; height: 600px;" spellcheck="false"></iframe>
   </div>

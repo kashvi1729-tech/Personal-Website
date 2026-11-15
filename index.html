@@ -825,6 +825,17 @@
 /* stacked impact cards: clip (not hidden) so the sticky stat column keeps working */
 .impact-list{ border-radius:var(--r-lg); overflow:hidden; overflow:clip; }
 .grid-3{ border-radius:var(--r-lg); overflow:hidden; overflow:clip; }
+  /* Triangle Squad button: outline only, follows theme accent */
+.readbook-btn{
+  background:transparent;
+  color:var(--cyan);
+  border:1.5px solid var(--cyan);
+}
+.readbook-btn:hover{
+  background:var(--cyan);
+  color:var(--void);
+  box-shadow:0 0 16px rgba(var(--accent-rgb),0.28);
+}
 </style>
 </head>
 <body>

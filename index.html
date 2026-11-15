@@ -805,6 +805,26 @@
     .reveal{opacity:1;transform:none;filter:none;transition:none;}
     .cursor-dot,.cursor-ring{display:none;}
   }
+  /* ---------- rounded corners ---------- */
+:root{ --r-sm:10px; --r-md:16px; --r-lg:22px; }
+
+/* buttons */
+.resume-btn,.readbook-btn,.cta-btn{ border-radius:var(--r-sm); }
+.chip{ border-radius:999px; }
+
+/* cards */
+.project-card{ border-radius:var(--r-lg); }
+.project-card h3{ border-radius:var(--r-sm); }
+.beyond-card .thumb{ border-radius:var(--r-lg); }
+.thread-visual{ border-radius:var(--r-lg); }
+
+/* inner boxes and lists */
+.proj-checklist,.beyond-list{ border-radius:var(--r-md); }
+.thumb span,.thread-visual span,.beyond-card .thumb span{ border-radius:var(--r-sm); }
+
+/* stacked impact cards: clip (not hidden) so the sticky stat column keeps working */
+.impact-list{ border-radius:var(--r-lg); overflow:hidden; overflow:clip; }
+.grid-3{ border-radius:var(--r-lg); overflow:hidden; overflow:clip; }
 </style>
 </head>
 <body>

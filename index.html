@@ -6,13 +6,9 @@
 <title>Kashvi Ruparelia</title>
 
 <meta name="description" content="Personal portfolio showcase website of Kashvi Ruparelia">
-
 <meta name="keywords" content="Kashvi Ruparelia, portfolio, student, AI, research, software, cybersecurity, robotics, mathematics, student researcher, Hyperbloom Hacks">
-
 <meta name="author" content="Kashvi Ruparelia">
-
 <meta name="robots" content="index, follow">
-
 <link rel="canonical" href="https://kashviruparelia.com/">
 
 <meta property="og:title" content="Kashvi Ruparelia | Portfolio">
@@ -21,7 +17,6 @@
 <meta property="og:url" content="https://kashviruparelia.com/">
 <meta property="og:image" content="https://kashviruparelia.com/preview.png">
 <link rel="icon" type="image/png" href="/favicon.png">
-<link rel="icon" href="/favicon.png">
 
 <script>
   // apply saved/default theme before first paint (default = light)
@@ -33,7 +28,7 @@
     document.documentElement.setAttribute('data-theme','light');
   }
 </script>
-  
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -54,6 +49,11 @@
     --selection-bg:#ece2c9;
     --desc-color:#cdd1d8;
     --gold:#98eaf5;
+
+    /* corner radii */
+    --r-sm:10px;
+    --r-md:16px;
+    --r-lg:22px;
   }
 
   [data-theme="light"]{
@@ -100,7 +100,7 @@
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  /* background grid canvas (supports click ripples) */
+  /* background grid canvas */
   #gridCanvas{
     position:fixed;
     inset:0;
@@ -167,7 +167,7 @@
   .theme-toggle{
     position:relative;
     width:38px;height:38px;
-    border-radius:10px;
+    border-radius:var(--r-sm);
     border:1px solid var(--hairline);
     background:var(--void-card);
     cursor:pointer;
@@ -194,7 +194,7 @@
   [data-theme="light"] .theme-toggle .icon-sun{opacity:1;transform:rotate(0) scale(1);}
   [data-theme="light"] .theme-toggle .icon-moon{opacity:0;transform:rotate(40deg) scale(.6);}
 
-  /* ---------- hat-tip flourish on toggle click ---------- */
+  /* hat-tip flourish on toggle click */
   @keyframes hatTip{
     0%{ transform:rotate(0deg) translateY(0); }
     30%{ transform:rotate(-35deg) translateY(-3px); }
@@ -206,7 +206,7 @@
     transform-origin:70% 90%;
   }
 
-  /* ---------- view-transition circular wipe (JS drives the actual clip-path) ---------- */
+  /* view-transition circular wipe (JS drives the clip-path) */
   ::view-transition-old(root),
   ::view-transition-new(root){
     animation:none;
@@ -323,10 +323,6 @@
     background:radial-gradient(circle at 30% 25%, rgba(var(--accent-rgb),0.16), transparent 65%);
   }
   .hero-portrait:hover{border-color:var(--cyan);}
-  .hero-portrait span{
-    font-family:'Instrument Serif',serif;font-style:italic;font-size:0.85rem;color:var(--mute);
-    padding:0 30px;z-index:1;
-  }
   .hero-portrait .portrait-img{
     position:relative;z-index:1;
     width:100%;height:100%;
@@ -365,9 +361,11 @@
     letter-spacing:0.06em;
     text-transform:uppercase;
     border:1px solid var(--hairline);
+    border-radius:999px;
     padding:8px 16px;
     color:var(--mute);
     transition:all .25s;
+    will-change:transform;
   }
   .chip:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 16px rgba(var(--accent-rgb),0.28);}
 
@@ -377,39 +375,38 @@
     flex-wrap:wrap;
     margin-top:26px;
   }
-    .resume-btn{
+  .resume-btn,
+  .readbook-btn{
     display:inline-block;
     font-family:'Instrument Serif',serif;font-style:italic;
     font-size:1.17rem;
     letter-spacing:0.08em;
     text-transform:uppercase;
+    border-radius:var(--r-sm);
+    padding:16.5px 36px;
+    transition:all .25s;
+  }
+  /* filled button */
+  .resume-btn{
     color:var(--void);
     background:var(--cyan);
     border:1px solid var(--cyan);
-    padding:16.5px 36px;
-    transition:all .25s;
   }
   .resume-btn:hover{
     background:transparent;
     color:var(--cyan);
     box-shadow:0 0 16px rgba(var(--accent-rgb),0.28);
   }
-   .readbook-btn{
-    display:inline-block;
-    font-family:'Instrument Serif',serif;font-style:italic;
-    font-size:1.17rem;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    color:var(--void);
-    background:#2f5d8a;
-    border:1px solid #2f5d8a;
-    padding:16.5px 36px;
-    transition:all .25s;
+  /* outline button, follows theme accent */
+  .readbook-btn{
+    color:var(--cyan);
+    background:transparent;
+    border:1.5px solid var(--cyan);
   }
   .readbook-btn:hover{
-    background:transparent;
-    color:#2f5d8a;
-    box-shadow:0 0 16px rgba(47,93,138,0.35);
+    background:var(--cyan);
+    color:var(--void);
+    box-shadow:0 0 16px rgba(var(--accent-rgb),0.28);
   }
   @media(max-width:760px){ .resume-btn{margin-top:22px;} }
 
@@ -439,64 +436,13 @@
     z-index:1;
     font-size:clamp(1.9rem,3.4vw,2.8rem);
   }
-
-  .divider{
-    width:100%;height:40px;
-    opacity:0.5;
-  }
-
-  .placeholder-line{height:12px;background:var(--void-card);border-radius:2px;}
-  .placeholder-line.w60{width:60%;} .placeholder-line.w80{width:80%;}
-  .placeholder-line.w40{width:40%;} .placeholder-line.w90{width:90%;}
-
-  /* ---------- alternating threads ---------- */
-  .thread-row{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;padding:44px 0;border-top:1px solid var(--hairline);}
-  .thread-row:first-child{border-top:none;}
-  .thread-row:nth-child(even){grid-template-columns:1.4fr 1fr;}
-  .thread-row:nth-child(even) .thread-copy{order:2;}
-  .thread-tag{font-family:'Instrument Serif',serif;font-style:italic;font-size:0.68rem;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;display:block;}
-  .thread-visual{
-    aspect-ratio:4/3;
-    border:1px solid var(--hairline);
-    background:var(--void-card);
-    display:flex;align-items:center;justify-content:center;
-    position:relative;
-    overflow:hidden;
-    transition:border-color .3s;
-  }
-  .thread-visual:hover{border-color:var(--magenta);}
-  .thread-visual::before{
-    content:"";position:absolute;inset:0;
-    background:radial-gradient(circle at 30% 20%, rgba(var(--accent-rgb),0.14), transparent 60%);
-  }
-  .thread-visual span{
-    font-family:'Instrument Serif',serif;font-style:italic;font-size:0.7rem;color:var(--mute);
-    border:1px solid var(--hairline);padding:5px 12px;background:var(--void);z-index:1;
-  }
-  @media(max-width:760px){
-    .thread-row,.thread-row:nth-child(even){grid-template-columns:1fr;}
-    .thread-row:nth-child(even) .thread-copy{order:0;}
-  }
-
-  /* ---------- grid cards ---------- */
-  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hairline);border:1px solid var(--hairline);}
-  .grid-3 .cell{background:var(--void-soft);padding:38px 30px;transition:background .3s;}
-  .grid-3 .cell:hover{background:var(--void-card);}
-  .grid-3 .cell .idx{font-family:'Instrument Serif',serif;font-style:italic;font-size:0.7rem;color:var(--amber);margin-bottom:18px;display:block;}
-  @media(max-width:760px){ .grid-3{grid-template-columns:1fr;} }
-
-  /* ---------- timeline ---------- */
-  .timeline{display:flex;flex-direction:column;}
-  .tl-item{display:grid;grid-template-columns:120px 1fr;gap:36px;padding:32px 0;border-top:1px solid var(--hairline);transition:padding-left .3s;}
-  .tl-item:first-child{border-top:none;}
-  .tl-item:hover{padding-left:14px;}
-  .tl-item .tl-date{font-family:'Instrument Serif',serif;font-style:italic;font-size:0.72rem;color:var(--magenta);padding-top:4px;}
-  @media(max-width:600px){ .tl-item{grid-template-columns:1fr;gap:10px;} }
+  .section-head h2 .word-wrap{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:0.08em;margin-bottom:-0.08em;}
+  .section-head h2 .word{display:inline-block;transform:translateY(115%);transition:transform .7s cubic-bezier(.19,1,.22,1);}
+  .section-head.in-view h2 .word{transform:translateY(0);}
 
   /* ---------- footer ---------- */
   footer{padding:110px 0 70px;border-top:1px solid var(--hairline);}
   footer h2{font-size:clamp(2.4rem,5.5vw,4rem);max-width:15ch;}
-  footer h2 .grad{background:linear-gradient(90deg,var(--magenta),var(--amber));-webkit-background-clip:text;background-clip:text;color:transparent;}
   .social-links{display:flex;gap:16px;margin-top:40px;}
   .social-links a{
     width:48px;height:48px;
@@ -543,18 +489,22 @@
   .project-card,.impact-card{position:relative;isolation:isolate;}
   .project-card::before,.impact-card::before{
     content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    border-radius:inherit;
     background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), rgba(var(--accent-rgb),0.12), transparent 70%);
     opacity:0;transition:opacity .3s;
   }
   .project-card:hover::before,.impact-card:hover::before{opacity:1;}
-  .project-card .thumb,.project-card .body,.impact-card .bignum,.impact-card .label,.impact-card .placeholder-line{position:relative;z-index:1;}
-
-  /* ---------- magnetic chips ---------- */
-  .chip{will-change:transform;}
+  .project-card .thumb,.project-card .body,.impact-card .bignum,.impact-card .label{position:relative;z-index:1;}
 
   /* ---------- research projects (2x2 grid) ---------- */
   .project-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;}
-  .project-card{border:1px solid var(--hairline);background:var(--void-soft);overflow:hidden;transition:border-color .3s,transform .3s;}
+  .project-card{
+    border:1px solid var(--hairline);
+    border-radius:var(--r-lg);
+    background:var(--void-soft);
+    overflow:hidden;
+    transition:border-color .3s,transform .3s;
+  }
   .project-card:hover{border-color:var(--cyan);transform:translateY(-4px);}
   .project-card .thumb{
     aspect-ratio:16/10;
@@ -567,17 +517,12 @@
     content:"";position:absolute;inset:0;
     background:radial-gradient(circle at 25% 20%, rgba(var(--accent-rgb),0.14), transparent 60%);
   }
-  .project-card .thumb span{
-    font-family:'Instrument Serif',serif;font-style:italic;font-size:0.7rem;color:var(--mute);
-    border:1px solid var(--hairline);padding:5px 12px;background:var(--void);z-index:1;
-  }
   .project-card .thumb-img{
     position:relative;z-index:1;
     width:100%;height:100%;
     object-fit:contain;
   }
   .project-card .body{padding:26px 26px 30px;}
-  .project-card .tag{font-family:'Instrument Serif',serif;font-style:italic;font-size:0.66rem;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;display:block;}
   .project-card h3{
     font-style:normal;
     text-align:center;
@@ -587,6 +532,7 @@
     line-height:1.35;
     font-weight:500;
     padding:7px 16px;
+    border-radius:var(--r-sm);
     background:linear-gradient(100deg, rgba(var(--accent-rgb),0.20), rgba(var(--accent-rgb),0.06));
   }
   .proj-desc,
@@ -603,41 +549,19 @@
     font-weight:700;
     text-shadow:0 0 0.4px currentColor, 0 0 0.4px currentColor;
   }
-  .proj-checklist{
-    list-style:none;
-    border:1px solid var(--hairline);
-    background:var(--void-card);
-    padding:16px 18px;
-    margin:18px 0 18px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-  }
-  .proj-checklist li{
-    font-family:Georgia,'Times New Roman',serif;
-    font-style:normal;
-    display:flex;
-    gap:10px;
-    align-items:flex-start;
-    font-size:0.92rem;
-    color:var(--desc-color);
-  }
-  .proj-checklist li::before{
-    content:"✓";
-    color:var(--cyan);
-    flex-shrink:0;
-  }
-  .proj-checklist li strong{color:var(--cyan);font-weight:inherit;}
+  .proj-checklist,
   .beyond-list{
     list-style:none;
     border:1px solid var(--hairline);
+    border-radius:var(--r-md);
     background:var(--void-card);
     padding:16px 18px;
-    margin:18px 0 18px;
+    margin:18px 0;
     display:flex;
     flex-direction:column;
     gap:10px;
   }
+  .proj-checklist li,
   .beyond-list li{
     font-family:Georgia,'Times New Roman',serif;
     font-style:normal;
@@ -647,13 +571,12 @@
     font-size:0.92rem;
     color:var(--desc-color);
   }
-  .beyond-list li::before{
-    content:"•";
-    color:var(--cyan);
-    flex-shrink:0;
-  }
+  .proj-checklist li::before{content:"✓";color:var(--cyan);flex-shrink:0;}
+  .beyond-list li::before{content:"•";color:var(--cyan);flex-shrink:0;}
+  .proj-checklist li strong,
   .beyond-list li strong{color:var(--cyan);font-weight:inherit;}
   .impact-card .proj-desc strong{color:var(--cyan);}
+
   .proj-link{
     display:flex;
     justify-content:center;
@@ -669,6 +592,7 @@
   .proj-link .arrow{display:inline-block;transition:transform .25s ease;}
   .proj-link:hover .arrow{transform:translate(4px,-4px);}
   .proj-link:hover{border-color:var(--gold);}
+
   .cta-btn{
     display:inline-flex;
     align-items:center;
@@ -682,6 +606,7 @@
     font-size:1rem;
     letter-spacing:0.01em;
     border:1px solid var(--cyan);
+    border-radius:var(--r-sm);
     transition:background .25s,color .25s,transform .25s,box-shadow .25s;
   }
   .cta-btn:hover{
@@ -692,15 +617,20 @@
   }
   @media(max-width:760px){ .project-grid{grid-template-columns:1fr;} }
 
-  /* ---------- social impact (big number cards) ---------- */
-  .impact-list{ gap:24px; background:none; border:none; border-radius:0; overflow:visible; }
-  .impact-card{ border:1px solid var(--hairline); border-radius:var(--r-lg); }
+  /* ---------- social impact (separate cards with a gap) ---------- */
+  .impact-list{display:flex;flex-direction:column;gap:24px;}
   .impact-card{
     display:grid;
     grid-template-columns:260px 1fr;
     gap:56px;
     align-items:start;
-    color:inherit;text-decoration:none;background:var(--void-soft);padding:44px 40px;position:relative;isolation:isolate;transition:background .3s,border-color .3s;
+    color:inherit;
+    text-decoration:none;
+    background:var(--void-soft);
+    border:1px solid var(--hairline);
+    border-radius:var(--r-lg);
+    padding:44px 40px;
+    transition:background .3s,border-color .3s;
   }
   .impact-card .cta-btn{align-self:flex-start;}
   .impact-card:hover{background:var(--void-card);}
@@ -721,15 +651,15 @@
     .impact-card .stat-col{position:static;}
   }
 
-  /* ---------- awards (3 across, no image) ---------- */
-  .awards-row{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;}
+  /* ---------- awards (4 across, no image) ---------- */
+  .awards-row{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
   .award-card{border-top:1px solid var(--hairline);padding-top:26px;transition:border-color .3s;}
   .award-card:hover{border-color:var(--magenta);}
   .award-card .mark{
     font-family:'Instrument Serif',serif;font-style:italic;font-weight:700;font-size:1.4rem;
     color:var(--magenta);margin-bottom:20px;
   }
-  .award-card h3{font-family:Georgia,'Times New Roman',serif;font-style:normal;font-size:1.1rem;font-weight:700;margin-bottom:8px;}
+  .award-card h2{font-style:normal;font-size:1.5rem;}
   .award-card .issuer{font-family:'Instrument Serif',serif;font-style:italic;font-size:0.88rem;color:var(--desc-color);letter-spacing:0.02em;}
   .award-card .award-desc{
     font-family:Georgia,'Times New Roman',serif;
@@ -739,6 +669,7 @@
     line-height:1.5;
     margin-top:10px;
   }
+  @media(max-width:1000px){ .awards-row{grid-template-columns:repeat(2,1fr);} }
   @media(max-width:760px){ .awards-row{grid-template-columns:1fr;} }
 
   /* ---------- beyond academics (3 across, images) ---------- */
@@ -748,6 +679,7 @@
   .beyond-card .thumb{
     aspect-ratio:1/1;
     border:1px solid var(--hairline);
+    border-radius:var(--r-lg);
     background:var(--void-card);
     display:flex;align-items:center;justify-content:center;
     margin-bottom:18px;
@@ -764,10 +696,6 @@
     width:100%;height:100%;
     object-fit:contain;
   }
-  .beyond-card .thumb span{
-    font-family:'Instrument Serif',serif;font-style:italic;font-size:0.68rem;color:var(--mute);
-    border:1px solid var(--hairline);padding:5px 12px;background:var(--void);z-index:1;
-  }
   .beyond-card .cap{font-family:'Instrument Serif',serif;font-style:italic;font-size:0.7rem;color:var(--mute);letter-spacing:0.04em;}
   .beyond-card h3{font-size:1.15rem;font-weight:500;margin-bottom:14px;}
   .beyond-card .sports-list{
@@ -778,11 +706,6 @@
     margin-top:4px;
   }
   @media(max-width:760px){ .beyond-grid{grid-template-columns:1fr;} }
-
-  /* ---------- word-by-word heading reveal ---------- */
-  .section-head h2 .word-wrap{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:0.08em;margin-bottom:-0.08em;}
-  .section-head h2 .word{display:inline-block;transform:translateY(115%);transition:transform .7s cubic-bezier(.19,1,.22,1);}
-  .section-head.in-view h2 .word{transform:translateY(0);}
 
   /* ---------- headshot click ripples ---------- */
   .headshot-ripple{
@@ -806,52 +729,6 @@
     .reveal{opacity:1;transform:none;filter:none;transition:none;}
     .cursor-dot,.cursor-ring{display:none;}
   }
-  /* ---------- rounded corners ---------- */
-:root{ --r-sm:10px; --r-md:16px; --r-lg:22px; }
-
-/* buttons */
-.resume-btn,.readbook-btn,.cta-btn{ border-radius:var(--r-sm); }
-.chip{ border-radius:999px; }
-
-/* cards */
-.project-card{ border-radius:var(--r-lg); }
-.project-card h3{ border-radius:var(--r-sm); }
-.beyond-card .thumb{ border-radius:var(--r-lg); }
-.thread-visual{ border-radius:var(--r-lg); }
-
-/* inner boxes and lists */
-.proj-checklist,.beyond-list{ border-radius:var(--r-md); }
-.thumb span,.thread-visual span,.beyond-card .thumb span{ border-radius:var(--r-sm); }
-
-/* stacked impact cards: clip (not hidden) so the sticky stat column keeps working */
-.impact-list{ border-radius:var(--r-lg); overflow:hidden; overflow:clip; }
-.grid-3{ border-radius:var(--r-lg); overflow:hidden; overflow:clip; }
-  /* Triangle Squad button: outline only, follows theme accent */
-.readbook-btn{
-  background:transparent;
-  color:var(--cyan);
-  border:1.5px solid var(--cyan);
-}
-.readbook-btn:hover{
-  background:var(--cyan);
-  color:var(--void);
-  box-shadow:0 0 16px rgba(var(--accent-rgb),0.28);
-}
-  .awards-row{ grid-template-columns:repeat(4,1fr); gap:28px; }
-  .award-card h2{ font-size:1.5rem; }
-  @media(max-width:1000px){ .awards-row{ grid-template-columns:repeat(2,1fr); } }
-  @media(max-width:760px){ .awards-row{ grid-template-columns:1fr; } }
-#impact .impact-list{
-  gap:24px;
-  background:none;
-  border:none;
-  border-radius:0;
-  overflow:visible;
-}
-#impact .impact-card{
-  border:1px solid var(--hairline);
-  border-radius:var(--r-lg);
-}
 </style>
 </head>
 <body>
@@ -895,9 +772,9 @@
           <span class="chip">MUSICIAN</span>
         </div>
         <div class="hero-buttons">
-  <a class="resume-btn" href="resume.pdf" target="_blank" rel="noopener">View Resume ↗</a>
-  <a class="readbook-btn" href="impact-flipbook.html">Read 'Triangle Squad' ↗</a>
-</div>
+          <a class="resume-btn" href="resume.pdf" target="_blank" rel="noopener">View Resume ↗</a>
+          <a class="readbook-btn" href="impact-flipbook.html">Read 'Triangle Squad' ↗</a>
+        </div>
       </div>
       <div class="hero-portrait"><img class="portrait-img" src="headshot.jpg" alt="Kashvi Ruparelia"></div>
     </div>
@@ -924,8 +801,8 @@
         <div class="thumb"><img class="thumb-img" src="project-eeg.png" alt="Kashvi wearing a single-channel EEG wearable connected to a microcontroller"></div>
         <div class="body">
           <h3>Low-Cost Wearable EEG System for Real-Time Cognitive State Classification</h3>
-          <p class="proj-desc"> <strong> -> </strong>A sub-$35 wearable EEG system capturing raw cognitive signals at 80–100 Hz, cutting hardware costs by over 94% compared to standard commercial-grade devices.</p>
-          <p class="proj-features"><strong>-> </strong>Curated a dataset of 400 seconds from 10 participants, utilizing standard serial communication to log raw analog-to-digital signals directly without applying hardware offset corrections <br> <stong>-> </stong>Evaluated five machine learning models on raw data to achieve 56% test accuracy, demonstrating a measurable 6-point improvement over random chance with 0.55 ROC-AUC values<br> <strong>-> </strong>Demonstrated practical feasibility by integrating the predictive models into an online car simulator, utilizing classified attention and relaxation states to control acceleration and braking dynamically.</p>
+          <p class="proj-desc"><strong>-&gt; </strong>A sub-$35 wearable EEG system capturing raw cognitive signals at 80–100 Hz, cutting hardware costs by over 94% compared to standard commercial-grade devices.</p>
+          <p class="proj-features"><strong>-&gt; </strong>Curated a dataset of 400 seconds from 10 participants, utilizing standard serial communication to log raw analog-to-digital signals directly without applying hardware offset corrections<br><strong>-&gt; </strong>Evaluated five machine learning models on raw data to achieve 56% test accuracy, demonstrating a measurable 6-point improvement over random chance with 0.55 ROC-AUC values<br><strong>-&gt; </strong>Demonstrated practical feasibility by integrating the predictive models into an online car simulator, utilizing classified attention and relaxation states to control acceleration and braking dynamically.</p>
           <ul class="proj-checklist">
             <li>Published in <strong>Journal of Engineering Research</strong> (Q1, Elsevier)</li>
           </ul>
@@ -937,7 +814,7 @@
         <div class="body">
           <h3>BIPV &amp; Floating Solar Solution for Scalable Energy Infrastructure</h3>
           <p class="proj-desc">Selected as a Student Researcher for the New York Academy of Sciences — Junior Academy, a highly competitive global program with roughly a 10% acceptance rate.</p>
-          <p class="proj-features">Collaborated with a team of 6 high schoolers from across the world and developed a BIPV and floating solar based solution for the probelm statement " To design an innovative and scalable solution to improve electrical infrastructure and/or energy storage technology in order to make solar energy use more reliable, efficient, and economical for meeting the energy demands of technology and society."</p>
+          <p class="proj-features">Collaborated with a team of 6 high schoolers from across the world and developed a BIPV and floating solar based solution for the problem statement "To design an innovative and scalable solution to improve electrical infrastructure and/or energy storage technology in order to make solar energy use more reliable, efficient, and economical for meeting the energy demands of technology and society."</p>
           <ul class="proj-checklist">
             <li>Student Researcher, <strong>New York Academy of Sciences — Junior Academy</strong> (~10% acceptance rate)</li>
           </ul>
@@ -947,8 +824,8 @@
         <div class="thumb"><img class="thumb-img" src="mri-scan.png" alt="MRI scan with tumor segmentation overlay"></div>
         <div class="body">
           <h3>Image Segmentation for identifying Brain Tumors in patients' MRI scans</h3>
-          <p class="proj-desc"> Developed an anatomically guided 2D U-Net with prior-informed attention for brain tumor segmentation (glioma, meningioma, pituitary) using the BRISC MRI dataset in PyTorch, achieving a Dice score of 0.709 and HD95 of 36.5 px. Engineered a complete training and evaluation pipeline incorporating class-imbalance-aware loss functions, 3-fold cross-validation, geometric data augmentation, and multiple segmentation metrics. </p>
-            <p class="proj-desc"> Benchmarked the model against baseline U-Net, attention-gate ablation, Swin-UNet, and UNETR architectures, using paired Wilcoxon tests to assess significance. Conducted false-positive analysis to evaluate anatomically implausible detections and compared model performance under identical training conditions.</p>
+          <p class="proj-desc">Developed an anatomically guided 2D U-Net with prior-informed attention for brain tumor segmentation (glioma, meningioma, pituitary) using the BRISC MRI dataset in PyTorch, achieving a Dice score of 0.709 and HD95 of 36.5 px. Engineered a complete training and evaluation pipeline incorporating class-imbalance-aware loss functions, 3-fold cross-validation, geometric data augmentation, and multiple segmentation metrics.</p>
+          <p class="proj-desc">Benchmarked the model against baseline U-Net, attention-gate ablation, Swin-UNet, and UNETR architectures, using paired Wilcoxon tests to assess significance. Conducted false-positive analysis to evaluate anatomically implausible detections and compared model performance under identical training conditions.</p>
         </div>
       </div>
     </div>
@@ -975,12 +852,11 @@
       <div class="impact-card reveal">
         <div class="stat-col">
           <div class="bignum">1500+</div>
-          <span class="label">Book reads [totalled from e-book reads and offline copies donated/sold] </span>
+          <span class="label">Book reads [totalled from e-book reads and offline copies donated/sold]</span>
         </div>
         <div class="content-col">
-          <div class="content-col">
           <p class="proj-desc">I authored <strong>Triangle Squad – Adventures in Trigonometry</strong>, an illustrated mathematics book designed to introduce students in Grades 5–8 to trigonometric thinking through storytelling and real-world applications, allowing them to develop an intuitive understanding of concepts before formally encountering them in high school.</p>
-          <p class="proj-desc">Before writing the book, I interacted with students from multiple schools to identify common misconceptions and understand how they approached mathematical problems. I incorporated evidence-based educational design principles, including scaffolded learning, inquiry-based learning, and contextual problem-solving, to build conceptual understanding before introducing symbolic notation and formula-based methods.</strong></p>
+          <p class="proj-desc">Before writing the book, I interacted with students from multiple schools to identify common misconceptions and understand how they approached mathematical problems. I incorporated evidence-based educational design principles, including scaffolded learning, inquiry-based learning, and contextual problem-solving, to build conceptual understanding before introducing symbolic notation and formula-based methods.</p>
           <a class="cta-btn" href="impact-flipbook.html">Read book ↗</a>
         </div>
       </div>
@@ -993,23 +869,23 @@
     <div class="awards-row">
       <div class="award-card reveal">
         <div class="mark">01</div>
-        <h2 style="font-style: normal;">CREST Gold Award</h2>
+        <h2>CREST Gold Award</h2>
         <div class="issuer">British Science Association</div>
         <p class="award-desc">Awarded for the Jacket–Helmet Assistive System for Visually Impaired Individuals project.</p>
       </div>
       <div class="award-card reveal">
         <div class="mark">02</div>
-        <h2 <h2 style="font-style: normal;">International Mathematical Modelling Challenge — Honourable Mention</h2>
-        <div class="issuer">By COMAP, Inc. — IMMC, India Ver. (2026) </div>
+        <h2>International Mathematical Modelling Challenge — Honourable Mention</h2>
+        <div class="issuer">By COMAP, Inc. — IMMC, India Ver. (2026)</div>
       </div>
       <div class="award-card reveal">
         <div class="mark">03</div>
-        <h2 <h2 style="font-style: normal;">AP Scholar with Distinction</h2>
+        <h2>AP Scholar with Distinction</h2>
         <div class="issuer">College Board</div>
       </div>
       <div class="award-card reveal">
         <div class="mark">04</div>
-        <h2 style="font-style: normal;">Social Changemaker Fellow</h2>
+        <h2>Social Changemaker Fellow</h2>
         <div class="issuer">TIDE (Together in Development and Education) Foundation</div>
       </div>
     </div>
@@ -1026,7 +902,7 @@
           <li>3x National Soccer Player — selected 3 consecutive years to represent Gujarat-Rajasthan (NorthWest Region) at the CISCE National Games, ranked <strong>2nd nationwide (2024)</strong></li>
           <li>AFI Certified Athlete (Athletics Federation of India) for Track &amp; Field and Javelin Throw — one of the highest recognitions in India</li>
         </ul>
-        <div class="cap sports-list" style="text-align: center;">Football · Volleyball · Table Tennis · Lawn Tennis · Javelin Throw</div>
+        <div class="cap sports-list" style="text-align:center;">Football · Volleyball · Table Tennis · Lawn Tennis · Javelin Throw</div>
       </div>
       <div class="beyond-card reveal">
         <div class="thumb"><img class="thumb-img" src="beyond-music.png" alt="Kashvi playing the bansuri flute outdoors"></div>
@@ -1037,7 +913,7 @@
           <li>Harmonium</li>
           <li>Ukulele</li>
         </ul>
-        <div class="cap sports-list" style="text-align: center;">Exploring the harmony between traditional and contemporary music through diverse instruments.</div>
+        <div class="cap sports-list" style="text-align:center;">Exploring the harmony between traditional and contemporary music through diverse instruments.</div>
       </div>
       <div class="beyond-card reveal">
         <div class="thumb"><img class="thumb-img" src="beyond-robotics.png" alt="Kashvi working on a robotic arm project"></div>
@@ -1046,9 +922,9 @@
           <li><span>Core cybersecurity and SOC intern at <strong>DRONA CYBER SOLUTIONS</strong></span></li>
           <li><span>Lead developer for school robotics team — Vivo Ignite 2023 subnationals; CISCE IRC 2024 subnationals</span></li>
         </ul>
-        <div class="cap sports-list" style="text-align: center;">Curious about how systems break, and how to build them so they don’t.</div>
+        <div class="cap sports-list" style="text-align:center;">Curious about how systems break, and how to build them so they don’t.</div>
       </div>
-    
+    </div>
   </section>
 
   <!-- FOOTER -->
@@ -1078,47 +954,43 @@
     if(theme === 'light'){ root.setAttribute('data-theme','light'); }
     else{ root.removeAttribute('data-theme'); }
   }
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  setThemeAttr(savedTheme); // set before grid canvas initializes below, so first paint is correct
+  let savedTheme = 'light';
+  try{ savedTheme = localStorage.getItem('theme') || 'light'; }catch(e){}
+  setThemeAttr(savedTheme);
 
-  // ---------- hat-tip -> circular wipe animation layer (wraps the existing toggle logic above) ----------
+  // ---------- hat-tip -> circular wipe ----------
   if(themeToggle){
     let themeAnimating = false;
 
     async function handleThemeToggleClick(){
-      if(themeAnimating) return; // guard against rapid/spam clicks
+      if(themeAnimating) return;
       themeAnimating = true;
 
-      // 1. play the icon "tip" flourish
       const icons = themeToggle.querySelectorAll('svg');
       icons.forEach(icon=>{
         icon.classList.remove('tipping');
-        void icon.offsetWidth; // force reflow so the animation restarts cleanly
+        void icon.offsetWidth;
         icon.classList.add('tipping');
       });
       const clearTip = ()=> icons.forEach(icon=>icon.classList.remove('tipping'));
       icons[0].addEventListener('animationend', clearTip, { once:true });
 
-      // button center, used for both the pivot reference and the wipe origin
       const rect = themeToggle.getBoundingClientRect();
       const x = rect.left + rect.width / 2;
       const y = rect.top + rect.height / 2;
 
-      // 2. let the tip start playing, then fire the actual theme swap ~150ms in
       await new Promise(r => setTimeout(r, 150));
 
       const isLight = root.getAttribute('data-theme') === 'light';
       const next = isLight ? 'dark' : 'light';
 
-      // this is the existing, untouched theme-swap logic
       const applyThemeSwap = ()=>{
-        localStorage.setItem('theme', next);
+        try{ localStorage.setItem('theme', next); }catch(e){}
         setThemeAttr(next);
         if(typeof drawGrid === 'function') drawGrid();
       };
 
       if(!document.startViewTransition){
-        // 5. no View Transitions support -> instant swap, no animation
         applyThemeSwap();
         themeAnimating = false;
         return;
@@ -1303,7 +1175,7 @@
   });
 
   // ---------- stagger card groups ----------
-  document.querySelectorAll('.project-grid, .impact-grid, .awards-row, .beyond-grid').forEach(group=>{
+  document.querySelectorAll('.project-grid, .impact-list, .awards-row, .beyond-grid').forEach(group=>{
     const items = group.querySelectorAll(':scope > .reveal');
     items.forEach((el,i)=>{ el.style.transitionDelay = (i*110)+'ms'; });
   });

@@ -837,6 +837,10 @@
   color:var(--void);
   box-shadow:0 0 16px rgba(var(--accent-rgb),0.28);
 }
+  .awards-row{ grid-template-columns:repeat(4,1fr); gap:28px; }
+  .award-card h2{ font-size:1.5rem; }
+  @media(max-width:1000px){ .awards-row{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:760px){ .awards-row{ grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
